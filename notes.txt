@@ -1,2 +1,2 @@
 We plotted temperatura and cell abundance
-
+Each point represents a sample.
