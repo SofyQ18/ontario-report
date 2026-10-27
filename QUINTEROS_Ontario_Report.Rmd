@@ -1,0 +1,65 @@
+---
+title: "QUINTEROS_Ontario_Report"
+author: "SofyQ18"
+date: "2026-10-26"
+output: html_document
+---
+# Curso: “Bioinformática orientado al procesamiento, análisis e interpretación de datos de secuenciación de amplicones 16S e ITS”
+
+##Nombre: Karen Sofía Quinteros Espinoza
+
+This report was prepared to analyze environmental and microbial data from Lake Ontario. Our goal is to determine to how environmental variables like temperature affect the abundance of different Phyla of bacteria.
+
+1. Leer el conjunto de datos del archivo sample_data, además de cargar el paquete tidyverse
+
+```{r packages}
+library(tidyverse)
+```
+```{r data}
+sample_data <- read_csv('sample_data.csv')
+```
+2. Se crea un diagrama de dispersión de nitrógeno total vs. células por mL, separado según cada grupo ambiental, para ello se emplea el siguiente comando
+ 
+```{r Nitrogen vs cells}
+ggplot(sample_data, aes(x=total_nitrogen,y=cells_per_ml)) +
+geom_point() +
+facet_wrap(~env_group)
+```
+ 
+El gráfico de salida, se lo realiza empleando el comando ggplot de la base de datos llamada "sample_data", en donde se realizan diversos comandos, en orden de lo solicitado se posee lo siguiente:
+
+1. El eje de las x tiene la variable de nitrógeno total, mientras que el eje  y es la variable de las células por mililitro, para ello se emplea el comando inicial "aes"
+2. Se solicita un gráfico de puntos, para ello se emplea el comando geom_point ()
+3. El comando facet_wrap (nombre de la columna) nos ayuda a graficar basado en la variable de columna del ambiente en donde se encuentra cada muestra.
+
+Para efectos de visualización, se ha modificado ligeramente el gráfico anterior, através del siguiente código:
+
+```{r plot_sample_data}
+ggplot(sample_data) +
+       aes(x=total_nitrogen) + labs(x="Nitrógeno total(N)") + aes(y = cells_per_ml/10000000) + labs(y="Cells(millones/mL)") + geom_point() + facet_wrap(~env_group) +  geom_point(color="red")
+```
+
+El código empleado añadió etiquetas tanto al eje x como al eje y empleando el comando "labs" señalando los respectivos ejes con su nuevo nombre. Por otro lado, se empleó una operación de división para visualizar mejor las escalas en el eje Y. Finalmente, se añadió color a los puntos de dispersión de color rojo através del comando geom_point(color="red")
+
+3. Como existe un valor atípico en Shallow_May, dado a niveles elevados de nitrógeno, se procede a filtrar y a ordenar los valores de las columnas segun la variable de interés.
+
+```{r arrangement}
+sample_data %>% 
+ filter(env_group == "Shallow_May") %>% 
+ arrange(desc(total_nitrogen))
+```
+
+4. 
+
+
+
+
+
+
+
+
+
+
+
+
+

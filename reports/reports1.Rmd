@@ -1,0 +1,41 @@
+---
+title: "A Report on Lake Ontario’s Microbes"
+author: "SofyQ18"
+date: "2026-10-24"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r packages}
+library(tidyverse)
+```
+
+This report was prepared to analyze environmental and microbial data from Lake Ontario. Our goal is to determine to how environmental variables like temperature affect the abundance of different Phyla of bacteria.
+
+```{r data}
+sample_data <- read_csv("sample_data.csv")
+```
+```{r plot-sample_data}
+ggplot(data = sample_data) +
+  aes(x = temperature) +
+  labs(x = "Temperature (C)") +
+  aes(y = cells_per_ml/1000000) +
+  labs(y = "Cells (millions/mL)") +
+  geom_point() +
+  labs(title = "Does temperature affect microbial abundance?") +
+  aes(color = env_group) +
+  aes(size = chlorophyll) +
+  labs(size = "Chlorophyll (ug/L)",
+       color = "Environmental Group")
+```
+
+
+
+
+
+
+
+

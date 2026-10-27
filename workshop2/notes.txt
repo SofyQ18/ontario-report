@@ -1,0 +1,4 @@
+
+Entender como mover directorios por git bash
+Unir git y github
+crear textos y archivos por terminal
